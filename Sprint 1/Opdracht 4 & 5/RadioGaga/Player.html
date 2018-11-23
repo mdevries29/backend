@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta http-equiv="Content-Type" 
+      content="text/html; 
+      charset=UTF-8">
+<style>    
+    #container{ 
+        margin-left:auto; 
+        margin-right:auto;
+        width:80%;
+    }
+    #controls{ 
+        display: block;
+        background:#a7d2f2;
+        background:black; 
+        padding-top:5px;
+        text-align:center;
+        width:80%;
+    }
+    input[type = image]{
+        width:10%;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+	<!--<div id="player"  style='display:block'>-->
+	    <video id="video" controls width="80%" preload poster="video/juanes.bmp"> 
+	    <source src="video/juanes.mp4" type="video/mp4"/>
+	</video>
+	<!--</div>-->
+	<div id="controls">
+		<input type="image" src="img/play.png" onclick="player.play(video);" />
+		<input type="image" src="img/pause.png" onclick="player.pause(video);" />
+		<input type="image" src="img/loop.png" onclick="player.reset(video);" />
+		<input type="image" src="img/rewind.png" onclick="player.rewind(video);" />
+		<input type="image" src="img/forward.png" onclick="player.forward(video);" />
+		<input type="image" src="img/volmin.png" onclick="player.volMin(video);" />
+		<input type="image" src="img/volplus.png" onclick="player.volPlus(video);" />	
+		<input type="image" src="img/voluit.png" onclick="player.volMute(video);" />	
+	</div>   
+    </div>
+	</body>
+	</html>
+<script>
+
+var Player = function() {};
+Player.prototype.play = function(media) {
+    media.play();
+};
+Player.prototype.pause = function(media) { 
+    media.pause();
+};    
+var player = new Player();
+    
+
+
+
+Player.prototype.reset = function(media) { 
+    media.currentTime = 0;
+};    
+Player.prototype.forward = function(media) { 
+    media.currentTime += 30;
+};
+Player.prototype.rewind = function(media) { 
+    media.currentTime -= 30;
+};
+Player.prototype.volPlus = function(media) { 
+    media.volume += 0.1;
+};
+Player.prototype.volMin = function(media) { 
+    media.volume -= 0.1;
+};
+Player.prototype.volMute = function(media) { 
+    if(media.muted){
+        media.muted = false;
+    }else{
+        media.muted = true;
+    }
+};
+
+    
+</script>
+
